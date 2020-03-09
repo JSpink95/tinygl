@@ -32,6 +32,7 @@
     <ClInclude Include="inc\gl\window.h" />
     <ClInclude Include="inc\maths\maths.h" />
     <ClInclude Include="inc\physics\intersection.h" />
+    <ClInclude Include="inc\physics\ray.h" />
     <ClInclude Include="inc\physics\simulator.h" />
   </ItemGroup>
   <ItemGroup>
@@ -49,6 +50,7 @@
     <ClCompile Include="src\gl\window.cpp" />
     <ClCompile Include="src\maths\maths.cpp" />
     <ClCompile Include="src\physics\intersection.cpp" />
+    <ClCompile Include="src\physics\ray.cpp" />
     <ClCompile Include="src\physics\simulator.cpp" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
