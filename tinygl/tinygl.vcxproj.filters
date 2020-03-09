@@ -1,167 +1,138 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup>
-    <Filter Include="gl">
-      <UniqueIdentifier>{8f377985-074f-4cff-a0ac-4f45f01a88c5}</UniqueIdentifier>
+    <Filter Include="inc">
+      <UniqueIdentifier>{7d7ef338-337f-4375-a631-a6a46708b277}</UniqueIdentifier>
     </Filter>
-    <Filter Include="glfw">
-      <UniqueIdentifier>{8f4f48f8-5252-483e-a5a9-156075230acb}</UniqueIdentifier>
+    <Filter Include="inc\engine">
+      <UniqueIdentifier>{1fbf102d-f80c-46fc-9b95-25b6e93c015d}</UniqueIdentifier>
     </Filter>
-    <Filter Include="game">
-      <UniqueIdentifier>{b56ab81b-568c-4abc-bb0e-c843c879a6ec}</UniqueIdentifier>
+    <Filter Include="inc\game">
+      <UniqueIdentifier>{41f802d0-0232-4fdb-a4f1-805b35667a39}</UniqueIdentifier>
     </Filter>
-    <Filter Include="maths">
-      <UniqueIdentifier>{89b9a533-bd2f-4616-8d6d-99cf9e6a2bd4}</UniqueIdentifier>
+    <Filter Include="inc\gl">
+      <UniqueIdentifier>{14d92ffc-93a7-4dfb-a224-395732de9cd4}</UniqueIdentifier>
     </Filter>
-    <Filter Include="engine">
-      <UniqueIdentifier>{fc17af7f-04d1-4d35-a10d-9124a72618a9}</UniqueIdentifier>
+    <Filter Include="inc\glfw">
+      <UniqueIdentifier>{7b27e0cd-bbae-4a90-98e5-08bf39b5eed5}</UniqueIdentifier>
     </Filter>
-    <Filter Include="physics">
-      <UniqueIdentifier>{7c5d06a6-d5e6-4f7a-99cb-7d33d3f3c5ed}</UniqueIdentifier>
+    <Filter Include="inc\maths">
+      <UniqueIdentifier>{5cb69ee8-40be-48e4-8eb4-c6c65fe85249}</UniqueIdentifier>
     </Filter>
-    <Filter Include="shaders">
-      <UniqueIdentifier>{e6e1e4be-edc4-4a79-a553-5939ecfd1b40}</UniqueIdentifier>
+    <Filter Include="inc\physics">
+      <UniqueIdentifier>{bfcc7ba7-7599-4eb7-a56d-1659b9afba12}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src">
+      <UniqueIdentifier>{14275ff7-505c-427e-8c25-f030296a9707}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\engine">
+      <UniqueIdentifier>{8385bea2-d734-47c0-8f74-22e35707e25b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\game">
+      <UniqueIdentifier>{bcd40587-2fb4-402e-937a-689ba07c4d22}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\gl">
+      <UniqueIdentifier>{dd7a02a0-0f7c-42b3-bfc7-cce4dfa46930}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\glfw">
+      <UniqueIdentifier>{527d33d1-5927-4c5e-abe2-0073defc04e4}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\maths">
+      <UniqueIdentifier>{bacf9a57-aa29-4bac-904f-71ebe7149e91}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\physics">
+      <UniqueIdentifier>{86ed82fe-c960-4d86-a275-2e6e9a283bb4}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="gl\window.cpp">
-      <Filter>gl</Filter>
-    </ClCompile>
-    <ClCompile Include="gl\core.cpp">
-      <Filter>gl</Filter>
-    </ClCompile>
-    <ClCompile Include="game\main.cpp">
-      <Filter>game</Filter>
-    </ClCompile>
-    <ClCompile Include="gl\shader.cpp">
-      <Filter>gl</Filter>
-    </ClCompile>
-    <ClCompile Include="gl\buffer.cpp">
-      <Filter>gl</Filter>
-    </ClCompile>
-    <ClCompile Include="gl\vertex_array.cpp">
-      <Filter>gl</Filter>
-    </ClCompile>
-    <ClCompile Include="gl\texture.cpp">
-      <Filter>gl</Filter>
-    </ClCompile>
-    <ClCompile Include="engine\renderer.cpp">
-      <Filter>engine</Filter>
-    </ClCompile>
-    <ClCompile Include="maths\maths.cpp">
-      <Filter>maths</Filter>
-    </ClCompile>
-    <ClCompile Include="gl\framebuffer.cpp">
-      <Filter>gl</Filter>
-    </ClCompile>
-    <ClCompile Include="physics\simulator.cpp">
-      <Filter>physics</Filter>
-    </ClCompile>
-    <ClCompile Include="physics\intersection.cpp">
-      <Filter>physics</Filter>
-    </ClCompile>
-    <ClCompile Include="engine\random.cpp">
-      <Filter>engine</Filter>
-    </ClCompile>
-    <ClCompile Include="game\compute_main.cpp">
-      <Filter>game</Filter>
-    </ClCompile>
-    <ClCompile Include="engine\timer.cpp">
-      <Filter>engine</Filter>
-    </ClCompile>
-  </ItemGroup>
-  <ItemGroup>
-    <ClInclude Include="gl\window.h">
-      <Filter>gl</Filter>
+    <ClInclude Include="inc\engine\random.h">
+      <Filter>inc\engine</Filter>
     </ClInclude>
-    <ClInclude Include="glfw\glfw.h">
-      <Filter>glfw</Filter>
+    <ClInclude Include="inc\engine\renderer.h">
+      <Filter>inc\engine</Filter>
     </ClInclude>
-    <ClInclude Include="gl\core.h">
-      <Filter>gl</Filter>
+    <ClInclude Include="inc\engine\timer.h">
+      <Filter>inc\engine</Filter>
     </ClInclude>
-    <ClInclude Include="gl\shader.h">
-      <Filter>gl</Filter>
+    <ClInclude Include="inc\gl\buffer.h">
+      <Filter>inc\gl</Filter>
     </ClInclude>
-    <ClInclude Include="gl\buffer.h">
-      <Filter>gl</Filter>
+    <ClInclude Include="inc\gl\core.h">
+      <Filter>inc\gl</Filter>
     </ClInclude>
-    <ClInclude Include="gl\vertex_array.h">
-      <Filter>gl</Filter>
+    <ClInclude Include="inc\gl\framebuffer.h">
+      <Filter>inc\gl</Filter>
     </ClInclude>
-    <ClInclude Include="gl\texture.h">
-      <Filter>gl</Filter>
+    <ClInclude Include="inc\gl\shader.h">
+      <Filter>inc\gl</Filter>
     </ClInclude>
-    <ClInclude Include="engine\renderer.h">
-      <Filter>engine</Filter>
+    <ClInclude Include="inc\gl\texture.h">
+      <Filter>inc\gl</Filter>
     </ClInclude>
-    <ClInclude Include="maths\maths.h">
-      <Filter>maths</Filter>
+    <ClInclude Include="inc\gl\vertex_array.h">
+      <Filter>inc\gl</Filter>
     </ClInclude>
-    <ClInclude Include="gl\framebuffer.h">
-      <Filter>gl</Filter>
+    <ClInclude Include="inc\gl\window.h">
+      <Filter>inc\gl</Filter>
     </ClInclude>
-    <ClInclude Include="physics\simulator.h">
-      <Filter>physics</Filter>
+    <ClInclude Include="inc\glfw\glfw.h">
+      <Filter>inc\glfw</Filter>
     </ClInclude>
-    <ClInclude Include="physics\intersection.h">
-      <Filter>physics</Filter>
+    <ClInclude Include="inc\maths\maths.h">
+      <Filter>inc\maths</Filter>
     </ClInclude>
-    <ClInclude Include="engine\random.h">
-      <Filter>engine</Filter>
+    <ClInclude Include="inc\physics\intersection.h">
+      <Filter>inc\physics</Filter>
     </ClInclude>
-    <ClInclude Include="engine\timer.h">
-      <Filter>engine</Filter>
+    <ClInclude Include="inc\physics\simulator.h">
+      <Filter>inc\physics</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <None Include="shaders\render_image.ps">
-      <Filter>shaders</Filter>
-    </None>
-    <None Include="shaders\render_image.vs">
-      <Filter>shaders</Filter>
-    </None>
-    <None Include="shaders\standard_unlit.ps">
-      <Filter>shaders</Filter>
-    </None>
-    <None Include="shaders\standard_unlit.vs">
-      <Filter>shaders</Filter>
-    </None>
-    <None Include="shaders\standard_unlit_instanced.ps">
-      <Filter>shaders</Filter>
-    </None>
-    <None Include="shaders\standard_unlit_instanced.vs">
-      <Filter>shaders</Filter>
-    </None>
-    <None Include="shaders\standard_particle.ps">
-      <Filter>shaders</Filter>
-    </None>
-    <None Include="shaders\standard_particle.vs">
-      <Filter>shaders</Filter>
-    </None>
-    <None Include="shaders\particles.ocs">
-      <Filter>shaders</Filter>
-    </None>
-    <None Include="shaders\particle_init.ocs">
-      <Filter>shaders</Filter>
-    </None>
-    <None Include="shaders\heightfield.ps">
-      <Filter>shaders</Filter>
-    </None>
-    <None Include="shaders\heightfield.vs">
-      <Filter>shaders</Filter>
-    </None>
-    <None Include="shaders\heightfield.gs">
-      <Filter>shaders</Filter>
-    </None>
-    <None Include="shaders\color.ps">
-      <Filter>shaders</Filter>
-    </None>
-    <None Include="shaders\color.vs">
-      <Filter>shaders</Filter>
-    </None>
-    <None Include="shaders\heightfield_flatten.ocs">
-      <Filter>shaders</Filter>
-    </None>
+    <ClCompile Include="src\game\compute_main.cpp">
+      <Filter>src\game</Filter>
+    </ClCompile>
+    <ClCompile Include="src\game\main.cpp">
+      <Filter>src\game</Filter>
+    </ClCompile>
+    <ClCompile Include="src\gl\buffer.cpp">
+      <Filter>src\gl</Filter>
+    </ClCompile>
+    <ClCompile Include="src\gl\core.cpp">
+      <Filter>src\gl</Filter>
+    </ClCompile>
+    <ClCompile Include="src\gl\framebuffer.cpp">
+      <Filter>src\gl</Filter>
+    </ClCompile>
+    <ClCompile Include="src\gl\shader.cpp">
+      <Filter>src\gl</Filter>
+    </ClCompile>
+    <ClCompile Include="src\gl\texture.cpp">
+      <Filter>src\gl</Filter>
+    </ClCompile>
+    <ClCompile Include="src\gl\vertex_array.cpp">
+      <Filter>src\gl</Filter>
+    </ClCompile>
+    <ClCompile Include="src\gl\window.cpp">
+      <Filter>src\gl</Filter>
+    </ClCompile>
+    <ClCompile Include="src\maths\maths.cpp">
+      <Filter>src\maths</Filter>
+    </ClCompile>
+    <ClCompile Include="src\physics\intersection.cpp">
+      <Filter>src\physics</Filter>
+    </ClCompile>
+    <ClCompile Include="src\physics\simulator.cpp">
+      <Filter>src\physics</Filter>
+    </ClCompile>
+    <ClCompile Include="src\engine\random.cpp">
+      <Filter>src\engine</Filter>
+    </ClCompile>
+    <ClCompile Include="src\engine\renderer.cpp">
+      <Filter>src\engine</Filter>
+    </ClCompile>
+    <ClCompile Include="src\engine\timer.cpp">
+      <Filter>src\engine</Filter>
+    </ClCompile>
   </ItemGroup>
 </Project>
