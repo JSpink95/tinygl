@@ -1,0 +1,167 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="gl">
+      <UniqueIdentifier>{8f377985-074f-4cff-a0ac-4f45f01a88c5}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="glfw">
+      <UniqueIdentifier>{8f4f48f8-5252-483e-a5a9-156075230acb}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="game">
+      <UniqueIdentifier>{b56ab81b-568c-4abc-bb0e-c843c879a6ec}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="maths">
+      <UniqueIdentifier>{89b9a533-bd2f-4616-8d6d-99cf9e6a2bd4}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="engine">
+      <UniqueIdentifier>{fc17af7f-04d1-4d35-a10d-9124a72618a9}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="physics">
+      <UniqueIdentifier>{7c5d06a6-d5e6-4f7a-99cb-7d33d3f3c5ed}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="shaders">
+      <UniqueIdentifier>{e6e1e4be-edc4-4a79-a553-5939ecfd1b40}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="gl\window.cpp">
+      <Filter>gl</Filter>
+    </ClCompile>
+    <ClCompile Include="gl\core.cpp">
+      <Filter>gl</Filter>
+    </ClCompile>
+    <ClCompile Include="game\main.cpp">
+      <Filter>game</Filter>
+    </ClCompile>
+    <ClCompile Include="gl\shader.cpp">
+      <Filter>gl</Filter>
+    </ClCompile>
+    <ClCompile Include="gl\buffer.cpp">
+      <Filter>gl</Filter>
+    </ClCompile>
+    <ClCompile Include="gl\vertex_array.cpp">
+      <Filter>gl</Filter>
+    </ClCompile>
+    <ClCompile Include="gl\texture.cpp">
+      <Filter>gl</Filter>
+    </ClCompile>
+    <ClCompile Include="engine\renderer.cpp">
+      <Filter>engine</Filter>
+    </ClCompile>
+    <ClCompile Include="maths\maths.cpp">
+      <Filter>maths</Filter>
+    </ClCompile>
+    <ClCompile Include="gl\framebuffer.cpp">
+      <Filter>gl</Filter>
+    </ClCompile>
+    <ClCompile Include="physics\simulator.cpp">
+      <Filter>physics</Filter>
+    </ClCompile>
+    <ClCompile Include="physics\intersection.cpp">
+      <Filter>physics</Filter>
+    </ClCompile>
+    <ClCompile Include="engine\random.cpp">
+      <Filter>engine</Filter>
+    </ClCompile>
+    <ClCompile Include="game\compute_main.cpp">
+      <Filter>game</Filter>
+    </ClCompile>
+    <ClCompile Include="engine\timer.cpp">
+      <Filter>engine</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="gl\window.h">
+      <Filter>gl</Filter>
+    </ClInclude>
+    <ClInclude Include="glfw\glfw.h">
+      <Filter>glfw</Filter>
+    </ClInclude>
+    <ClInclude Include="gl\core.h">
+      <Filter>gl</Filter>
+    </ClInclude>
+    <ClInclude Include="gl\shader.h">
+      <Filter>gl</Filter>
+    </ClInclude>
+    <ClInclude Include="gl\buffer.h">
+      <Filter>gl</Filter>
+    </ClInclude>
+    <ClInclude Include="gl\vertex_array.h">
+      <Filter>gl</Filter>
+    </ClInclude>
+    <ClInclude Include="gl\texture.h">
+      <Filter>gl</Filter>
+    </ClInclude>
+    <ClInclude Include="engine\renderer.h">
+      <Filter>engine</Filter>
+    </ClInclude>
+    <ClInclude Include="maths\maths.h">
+      <Filter>maths</Filter>
+    </ClInclude>
+    <ClInclude Include="gl\framebuffer.h">
+      <Filter>gl</Filter>
+    </ClInclude>
+    <ClInclude Include="physics\simulator.h">
+      <Filter>physics</Filter>
+    </ClInclude>
+    <ClInclude Include="physics\intersection.h">
+      <Filter>physics</Filter>
+    </ClInclude>
+    <ClInclude Include="engine\random.h">
+      <Filter>engine</Filter>
+    </ClInclude>
+    <ClInclude Include="engine\timer.h">
+      <Filter>engine</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="shaders\render_image.ps">
+      <Filter>shaders</Filter>
+    </None>
+    <None Include="shaders\render_image.vs">
+      <Filter>shaders</Filter>
+    </None>
+    <None Include="shaders\standard_unlit.ps">
+      <Filter>shaders</Filter>
+    </None>
+    <None Include="shaders\standard_unlit.vs">
+      <Filter>shaders</Filter>
+    </None>
+    <None Include="shaders\standard_unlit_instanced.ps">
+      <Filter>shaders</Filter>
+    </None>
+    <None Include="shaders\standard_unlit_instanced.vs">
+      <Filter>shaders</Filter>
+    </None>
+    <None Include="shaders\standard_particle.ps">
+      <Filter>shaders</Filter>
+    </None>
+    <None Include="shaders\standard_particle.vs">
+      <Filter>shaders</Filter>
+    </None>
+    <None Include="shaders\particles.ocs">
+      <Filter>shaders</Filter>
+    </None>
+    <None Include="shaders\particle_init.ocs">
+      <Filter>shaders</Filter>
+    </None>
+    <None Include="shaders\heightfield.ps">
+      <Filter>shaders</Filter>
+    </None>
+    <None Include="shaders\heightfield.vs">
+      <Filter>shaders</Filter>
+    </None>
+    <None Include="shaders\heightfield.gs">
+      <Filter>shaders</Filter>
+    </None>
+    <None Include="shaders\color.ps">
+      <Filter>shaders</Filter>
+    </None>
+    <None Include="shaders\color.vs">
+      <Filter>shaders</Filter>
+    </None>
+    <None Include="shaders\heightfield_flatten.ocs">
+      <Filter>shaders</Filter>
+    </None>
+  </ItemGroup>
+</Project>

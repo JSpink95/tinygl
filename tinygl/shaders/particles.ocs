@@ -1,0 +1,105 @@
+#version 430
+
+struct particle
+{
+    vec4 posrot;
+	vec4 velocity;
+};
+
+uniform float u_DeltaTime;
+uniform vec2 u_HeightfieldResolution;
+uniform float u_MaxSnowHeight;
+uniform float u_SnowIncrement;
+uniform float u_ParticleCount;
+
+uniform int u_SnowPileSize = 4;
+
+layout(std140, binding = 0) buffer ub_Particles
+{
+    particle particles[];
+};
+
+layout(std140, binding = 1) buffer ub_Heightfield
+{
+	vec4 heights[];
+};
+
+uint calculateIndexFromXYWidth(uint x, uint y, uint w)
+{
+	return x + y * w;
+}
+
+uint mapParticlePositionToHeightfield(uint particleIndex)
+{
+	vec2 xz = clamp(particles[particleIndex].posrot.xz, vec2(-20.0f), vec2(20.0f));
+	xz = (xz + 20.0f) / 40.0f;														// remap to 0. -> 1.0 range
+	xz *= (u_HeightfieldResolution);												// remap from [0.0 -> 1.0] to [0.0 -> 256.0]
+	
+	return uint(xz.x) + uint(xz.y) * uint(u_HeightfieldResolution.x);
+}
+
+void addHeight(uint heightIndex, float amount)
+{
+	heights[heightIndex].y += amount;
+	heights[heightIndex].y = clamp(heights[heightIndex].y, 0.0f, u_MaxSnowHeight);
+}
+
+layout(local_size_x = 32, local_size_y = 1, local_size_z = 1) in;
+void main()
+{
+    uint particleIndex = gl_GlobalInvocationID.x;
+
+	if (particleIndex >= 0 && particleIndex < uint(u_ParticleCount))
+	{
+		vec3 acceleration = vec3(0.0f, -9.8f, 0.0f);
+		particles[particleIndex].posrot.xyz += (particles[particleIndex].velocity.xyz + acceleration) * u_DeltaTime;
+		
+		if (particles[particleIndex].posrot.x < -20.0f)
+		{
+			particles[particleIndex].posrot.x = 20.0f;
+		}
+		
+		if (particles[particleIndex].posrot.x > 20.0f)
+		{
+			particles[particleIndex].posrot.x = -20.0f;
+		}
+		
+		if (particles[particleIndex].posrot.z < -20.0f)
+		{
+			particles[particleIndex].posrot.z = 20.0f;
+		}
+		
+		if (particles[particleIndex].posrot.z > 20.0f)
+		{
+			particles[particleIndex].posrot.z = -20.0f;
+		}
+		
+		uint height_index = mapParticlePositionToHeightfield(particleIndex);
+		if (particles[particleIndex].posrot.y < heights[height_index].y)
+		{
+			particles[particleIndex].posrot.y = 20.0f;
+
+			const float baseAmount = u_SnowIncrement;
+
+			// the centre hit gets the most coverage
+			//addHeight(height_index, baseAmount);
+
+			const int hfsize = int(u_HeightfieldResolution.x * u_HeightfieldResolution.y);
+			const int hw = int(u_HeightfieldResolution.x);
+			const int hx = int(height_index) % hw;
+			const int hy = int(height_index) / hw;
+
+			for (int x = hx - u_SnowPileSize; x <= (hx + u_SnowPileSize); ++x)
+			{
+				for (int y = hy - u_SnowPileSize; y <= (hy + u_SnowPileSize); ++y)
+				{
+					const int idx = x + y * hw;
+					if (idx >= 0 && idx <= hfsize - 1)
+					{
+						addHeight(idx, baseAmount * 0.5f);
+					}
+				}
+			}
+		}
+	}
+}

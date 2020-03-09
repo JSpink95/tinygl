@@ -1,0 +1,12 @@
+#version 440 core
+
+in vec2 fTexcoord;
+
+uniform sampler2D u_Texture;
+
+layout(location = 0) out vec4 oColor;
+
+void main()
+{
+    oColor = texture(u_Texture, fTexcoord);
+}

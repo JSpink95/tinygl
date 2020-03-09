@@ -1,0 +1,27 @@
+#version 430
+
+uniform vec2 u_HeightfieldSize;
+
+uniform vec3 u_SpherePos;
+uniform float u_SphereRadius;
+uniform mat4 u_HeightfieldWorld;
+
+layout(std140, binding = 0) buffer ub_Heightfield
+{
+	vec4 heights[];
+};
+
+layout(local_size_x = 32, local_size_y = 32, local_size_z = 1) in;
+void main()
+{
+	uint heightIndex = gl_GlobalInvocationID.x + gl_GlobalInvocationID.y * uint(u_HeightfieldSize.x);
+	if (heightIndex >= 0 && heightIndex < uint(u_HeightfieldSize.x * u_HeightfieldSize.y))
+	{
+		float dist = distance((u_HeightfieldWorld * vec4(heights[heightIndex].xyz, 1.0)).xz, u_SpherePos.xz);
+		if (dist < u_SphereRadius)
+		{
+			float flatten = dist / u_SphereRadius;
+			heights[heightIndex].y *= (1.0f - flatten) * 0.1f;
+		}
+	}
+}

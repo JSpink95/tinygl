@@ -1,0 +1,23 @@
+#version 440 core
+
+in vec3 fPosition;
+in vec3 fNormal;
+in float fLinearHeight;
+
+//uniform vec3 u_LowColor = vec3(0.7, 0.8, 0.3) * 0.6;
+uniform vec3 u_LowColor = vec3(0.9, 0.9, 0.9);
+uniform vec3 u_TopColor = vec3(1.0, 1.0, 1.0);
+
+out vec4 oColor;
+
+void main()
+{
+	vec3 lightposition = vec3(0.0f, 40.0f, 0.0f);
+	vec3 lightdirection = normalize(lightposition - fPosition);
+
+	float nl = dot(lightdirection, fNormal);
+	vec3 albedo = mix(u_LowColor, u_TopColor, fLinearHeight);
+
+	oColor.rgb = albedo * max(nl, 0.4f);
+	oColor.a = 1.0f;
+}
