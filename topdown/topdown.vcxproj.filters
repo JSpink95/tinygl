@@ -7,5 +7,13 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp" />
+    <ClCompile Include="game\camera.cpp">
+      <Filter>game</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="game\camera.h">
+      <Filter>game</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>
