@@ -30,4 +30,6 @@ namespace glfw
 
     void GetWindowSize(window* w, int& width, int& height);
     void GetMousePosition(window* w, float& mx, float& my);
+
+    void SetCursorVisible(window* w, bool visible);
 }

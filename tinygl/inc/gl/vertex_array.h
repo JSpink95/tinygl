@@ -9,6 +9,7 @@ namespace gl
 
     struct vertex_array
     {
+        unsigned int vertexCount;
         unsigned int indexCount;
 
         Id id;

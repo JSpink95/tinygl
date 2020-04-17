@@ -1,0 +1,91 @@
+#version 440 core
+
+#include "shaders/ray.inc"
+#include "shaders/sdf.inc"
+
+const int ChunkSize = 32;
+const int ChunkFullCount = ChunkSize * ChunkSize * ChunkSize;
+
+struct Chunk {
+	vec4 worldLocation;
+	int voxels[ChunkFullCount];
+};
+
+layout (binding = 0, rgba32f) uniform image2D u_Output;
+layout (binding = 1, std140) buffer ub_Chunks {
+	Chunk chunks[];
+};
+
+uniform int u_ChunkCount;
+uniform vec2 u_Dimensions;
+uniform mat4 u_CameraToWorld;
+uniform mat4 u_CameraInverseProjection;
+
+float map(vec3 p) {
+	float last = 0.0f;
+	float closest = 100000.0f;
+
+	for (int s = 0; s < u_ChunkCount; ++s)
+	{
+		vec3 chunkLocation = chunks[s].worldLocation.xyz;
+		for (int v = 0; v < ChunkFullCount; ++v)
+		{
+			int x = v % ChunkSize;
+			int y = v / ChunkSize % ChunkSize;
+			int z = v / (ChunkSize * ChunkSize);
+
+			if (chunks[s].voxels[v] == 1)
+			{
+				vec3 voxelLocation = chunkLocation + vec3(float(x), float(y), float(z));
+				float d = map(p, voxelLocation, vec4(0.5f), BOX_TYPE);
+				
+				if (s != 0 || v != 0)
+				{
+					d = opSmoothUnion(last, d, 0.1f);
+				}
+
+				closest = min(d, closest);
+				last = d;
+			}
+		}
+
+	}
+
+	return closest;
+}
+
+vec3 calcNormal(vec3 pos) {
+    const float ep = 0.0001;
+    vec2 e = vec2(1.0,-1.0)*0.5773;
+    return normalize( e.xyy*map( pos + e.xyy*ep ) + 
+					  e.yyx*map( pos + e.yyx*ep ) + 
+					  e.yxy*map( pos + e.yxy*ep ) + 
+					  e.xxx*map( pos + e.xxx*ep ) );
+}
+
+layout(local_size_x=32, local_size_y=32, local_size_z=1) in;
+void main() {
+	ivec2 pixel = ivec2(gl_GlobalInvocationID.xy);
+
+	vec2 uv = (vec2(pixel) + vec2(0.5f)) / u_Dimensions;
+	Ray ray = createRayFromCameraUV(uv * 2.0f - 1.0f, u_CameraToWorld, u_CameraInverseProjection);
+
+	const int maxMarches = 32;
+
+	float t = 0.0f;
+	vec4 outputColor = vec4(0.0f);
+	for (int march = 0; march < maxMarches; ++march) {
+		vec3 p = ray.origin + ray.direction * t;
+		float d = map(p);
+
+		if (abs(d) < 0.01f) {
+			vec3 normal = calcNormal(p);
+			outputColor = vec4(normal, 1.0f);
+			break;
+		}
+
+		t += d;
+	}
+	
+	imageStore(u_Output, pixel, outputColor);
+}

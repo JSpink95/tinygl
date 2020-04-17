@@ -4,10 +4,16 @@
     <Filter Include="game">
       <UniqueIdentifier>{bcbdd814-47d2-41fd-a3e8-4a15716b5312}</UniqueIdentifier>
     </Filter>
+    <Filter Include="shaders">
+      <UniqueIdentifier>{da95f18a-9739-4ece-917e-f89f353bd12a}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp" />
     <ClCompile Include="game\camera.cpp">
+      <Filter>game</Filter>
+    </ClCompile>
+    <ClCompile Include="game\chunk.cpp">
       <Filter>game</Filter>
     </ClCompile>
   </ItemGroup>
@@ -15,5 +21,34 @@
     <ClInclude Include="game\camera.h">
       <Filter>game</Filter>
     </ClInclude>
+    <ClInclude Include="game\chunk.h">
+      <Filter>game</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="shaders\chunk.ps">
+      <Filter>shaders</Filter>
+    </None>
+    <None Include="shaders\chunk.vs">
+      <Filter>shaders</Filter>
+    </None>
+    <None Include="shaders\render_image.ps">
+      <Filter>shaders</Filter>
+    </None>
+    <None Include="shaders\render_image.vs">
+      <Filter>shaders</Filter>
+    </None>
+    <None Include="shaders\raymarch.ocs">
+      <Filter>shaders</Filter>
+    </None>
+    <None Include="shaders\ray.inc">
+      <Filter>shaders</Filter>
+    </None>
+    <None Include="shaders\sdf.inc">
+      <Filter>shaders</Filter>
+    </None>
+    <None Include="shaders\raymarch-chunk.ocs">
+      <Filter>shaders</Filter>
+    </None>
   </ItemGroup>
 </Project>

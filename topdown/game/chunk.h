@@ -3,8 +3,14 @@
 
 #include <functional>
 
+namespace gl
+{
+    struct vertex_array;
+}
+
 namespace gf
 {
+    using chunk_mesh = gl::vertex_array;
     using chunkCellInitialiser = std::function<void(unsigned int x, unsigned int y, unsigned int z, bool& active)>;
 
     struct chunk_config
@@ -26,7 +32,11 @@ namespace gf
 
     chunk* CreateChunk(const chunk_config& config);
     chunk* CreateChunk(const chunk_config& config, chunkCellInitialiser initialiser);
+    chunk* CreateChunkFromNoise(const chunk_config& config);
     void DestroyChunk(chunk* c);
+
+    chunk_mesh* CreateChunkMesh(chunk* c);
+    void DestroyChunkMesh(chunk_mesh* mesh);
 
     unsigned int getChunkCellCount(chunk* c);
     void convertChunkIndexToXYZ(chunk* c, unsigned int idx, unsigned int &x, unsigned int &y, unsigned int &z);

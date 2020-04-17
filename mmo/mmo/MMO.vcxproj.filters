@@ -1,0 +1,40 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <ClCompile Include="main.cpp" />
+    <ClCompile Include="src\game\terrain.cpp">
+      <Filter>src\game</Filter>
+    </ClCompile>
+    <ClCompile Include="src\game\perlin.cpp">
+      <Filter>src\game</Filter>
+    </ClCompile>
+    <ClCompile Include="src\game\camera.cpp">
+      <Filter>src\game</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <Filter Include="inc">
+      <UniqueIdentifier>{ea2356f3-1eb6-4f10-aa68-b318bace288c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src">
+      <UniqueIdentifier>{71bf52ea-f3b3-4877-9cb3-48acf5890086}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="inc\game">
+      <UniqueIdentifier>{482a3d6f-cb83-44bd-8b5e-52bcea137e03}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\game">
+      <UniqueIdentifier>{7bba6eaf-888c-486b-919c-7ee3b46b6bbb}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="inc\game\terrain.h">
+      <Filter>inc\game</Filter>
+    </ClInclude>
+    <ClInclude Include="inc\game\perlin.h">
+      <Filter>inc\game</Filter>
+    </ClInclude>
+    <ClInclude Include="inc\game\camera.h">
+      <Filter>inc\game</Filter>
+    </ClInclude>
+  </ItemGroup>
+</Project>

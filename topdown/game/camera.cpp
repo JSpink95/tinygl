@@ -14,8 +14,8 @@ namespace gf
         result->eye = eye;
         result->target = target;
         result->up = up;
-        result->zfar = 0.01f;
-        result->znear = 100.0f;
+        result->znear = 0.01f;
+        result->zfar = 100.0f;
 
         return result;
     }
@@ -70,11 +70,7 @@ namespace gf
         float4 screenPos = float4(mx, my, 1.0f, 1.0f);
         float4 worldPos = invVP * screenPos;
 
-        physics::ray ray;
-        ray.origin = cam->eye;
-        ray.direction = math::normalize(float3(worldPos));
-
-        return ray;
+        return physics::CreateRay(cam->eye, math::normalize(float3(worldPos)));
     }
 
     void move(camera* cam, const float3& amount, bool eyeOnly)

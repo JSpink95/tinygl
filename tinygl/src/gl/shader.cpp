@@ -6,9 +6,66 @@
 #include <fstream>
 #include <string>
 
+struct string_input_stream
+{
+    const std::string input;
+    unsigned int index;
+};
+
+string_input_stream createInputStream(const std::string& input) {
+    return { input, 0 };
+}
+
+bool read(string_input_stream& stream, unsigned char& value) {
+    if (stream.index < stream.input.length()) {
+        value = stream.input.at(stream.index++);
+        return true;
+    }
+
+    return false;
+}
+
+std::string readUntilChar(string_input_stream& stream, unsigned char match) {
+    std::string result;
+    unsigned char value;
+    while (read(stream, value) && value != match) {
+        result += value;
+    }
+
+    return result;
+}
+
+std::string readEnclosedString(string_input_stream& stream) {
+    std::string result;
+    readUntilChar(stream, '\"');
+
+    unsigned char value;
+    while (read(stream, value) && value != '"') {
+        result += value;
+    }
+
+    return result;
+}
+
 namespace gl
 {
     void DestroyShader(shader* s);
+
+    std::string LoadRawFile(const char* f)
+    {
+        std::string result;
+
+        std::ifstream file(f);
+        if (file.is_open())
+        {
+            std::string line;
+            while (std::getline(file, line)) result += line + "\n";
+
+            file.close();
+        }
+
+        return result;
+    }
 
     std::string LoadShaderSourceFromFile(const char* f)
     {
@@ -18,7 +75,25 @@ namespace gl
         if (file.is_open())
         {
             std::string line;
-            while (std::getline(file, line)) result += line + "\n";
+            while (std::getline(file, line))
+            {
+                if (line.length() > 0 && line.at(0) == '#')
+                {
+                    string_input_stream stream = createInputStream(line);
+                    std::string preprocess = readUntilChar(stream, ' ');
+                    if (preprocess == "#include")
+                    {
+                        std::string lib = LoadRawFile(readEnclosedString(stream).c_str());
+                        result += "//--start of included file--//\n";
+                        result += "\n" + lib + "\n";
+                        result += "//---end of included file---//\n";
+                        continue;
+                    }
+                }
+
+                result += line + "\n";
+            }
+
             file.close();
         }
 
@@ -73,42 +148,52 @@ namespace gl
 
     Uid FindOrAddUniform(program* p, const char* id)
     {
-        auto it = p->uniforms.find(std::string(id));
-        if (it != p->uniforms.end())
+        if (p != nullptr)
         {
-            return it->second;
+            auto it = p->uniforms.find(std::string(id));
+            if (it != p->uniforms.end())
+            {
+                return it->second;
+            }
+
+            Uid uid = glGetUniformLocation(p->id, id);
+            p->uniforms.emplace(std::string(id), uid);
+
+            return uid;
         }
 
-        Uid uid = glGetUniformLocation(p->id, id);
-        p->uniforms.emplace(std::string(id), uid);
-
-        return uid;
+        return -1;
     }
 
     bool LinkProgram(program* p)
     {
-        glLinkProgram(p->id);
-
-        GLint success = 0;
-        glGetProgramiv(p->id, GL_LINK_STATUS, &success);
-
-        if (success == 0)
+        if (p != nullptr)
         {
-            GLint length = 0;
-            glGetProgramiv(p->id, GL_INFO_LOG_LENGTH, &length);
+            glLinkProgram(p->id);
 
-            if (length > 0)
+            GLint success = 0;
+            glGetProgramiv(p->id, GL_LINK_STATUS, &success);
+
+            if (success == 0)
             {
-                std::vector<GLchar> info(length);
-                glGetProgramInfoLog(p->id, length, nullptr, &info.at(0));
+                GLint length = 0;
+                glGetProgramiv(p->id, GL_INFO_LOG_LENGTH, &length);
 
-                printf("%s\n", &info.at(0));
+                if (length > 0)
+                {
+                    std::vector<GLchar> info(length);
+                    glGetProgramInfoLog(p->id, length, nullptr, &info.at(0));
+
+                    printf("%s\n", &info.at(0));
+                }
+
+                return false;
             }
 
-            return false;
+            return true;
         }
 
-        return true;
+        return false;
     }
 
     program* CreateShaderProgramFromSource(const char* vs, const char* ps)
@@ -202,7 +287,10 @@ namespace gl
 
     void DispatchComputeProgram(program* p, unsigned int groupX, unsigned int groupY, unsigned int groupZ)
     {
-        glDispatchCompute(groupX, groupY, groupZ);
+        if (p != nullptr)
+        {
+            glDispatchCompute(groupX, groupY, groupZ);
+        }
     }
 
     void UploadUniform(program* p, const char* id, float value)
@@ -253,6 +341,18 @@ namespace gl
         glUniform4fv(uid, count, xyzw ? glm::value_ptr(xyzw[0]) : nullptr);
     }
 
+    void UploadUniform(program* p, const char* id, int value)
+    {
+        Uid uid = FindOrAddUniform(p, id);
+        glUniform1i(uid, value);
+    }
+    
+    void UploadUniform(program* p, const char* id, unsigned int count, const int* values)
+    {
+        Uid uid = FindOrAddUniform(p, id);
+        glUniform1iv(uid, count, values);
+    }
+
     void UploadUniform(program* p, const char* id, const float4x4& matrix)
     {
         Uid uid = FindOrAddUniform(p, id);
@@ -271,5 +371,20 @@ namespace gl
 
         BindTexture2D(t, location);
         glUniform1i(uid, location);
+    }
+
+    void UploadUniformArray(program* p, const char* id, unsigned int count, texture** textures)
+    {
+        Uid uid = FindOrAddUniform(p, id);
+
+        for (unsigned int index = 0; index < count; ++index)
+        {
+            if (const texture* t = textures[index])
+            {
+                //glBindTextureUnit(index, t->id);
+                glActiveTexture(GL_TEXTURE0 + index);
+                glBindTexture(GL_TEXTURE_2D, t->id);
+            }
+        }
     }
 }

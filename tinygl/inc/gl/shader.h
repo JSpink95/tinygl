@@ -50,10 +50,15 @@ namespace gl
     void UploadUniform(program* p, const char* id, const float4& xyzw);
     void UploadUniformArray(program* p, const char* id, unsigned int count, const float4& xyzw);
 
+    // ints
+    void UploadUniform(program* p, const char* id, int value);
+    void UploadUniform(program* p, const char* id, unsigned int count, const int* value);
+
     // matrices
     void UploadUniform(program* p, const char* id, const float4x4& matrix);
     void UploadUniformArray(program* p, const char* id, unsigned int count, const float4x4* matrix);
 
     // textures
     void UploadUniform(program* p, const char* id, texture* t, int location);
+    void UploadUniformArray(program* p, const char* id, unsigned int count, texture** textures);
 }

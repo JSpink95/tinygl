@@ -1,0 +1,80 @@
+#version 440 core
+
+#include "shaders/ray.inc"
+#include "shaders/sdf.inc"
+
+struct SdfShape {
+	vec4 data;
+	vec4 pos_type;
+};
+
+layout (binding = 0, rgba32f) uniform image2D u_Output;
+layout (binding = 1, std140) buffer ub_Shapes {
+	SdfShape shapes[];
+};
+
+uniform int u_ShapeCount;
+uniform vec2 u_Dimensions;
+uniform mat4 u_CameraToWorld;
+uniform mat4 u_CameraInverseProjection;
+
+float map(vec3 p) {
+	float last = 0.0f;
+	float closest = 100000.0f;
+
+	for (int s = 0; s < u_ShapeCount; ++s)
+	{
+		vec4 shapeData = shapes[s].data;
+		vec3 shapePos = shapes[s].pos_type.xyz;
+		int shapeType = int(shapes[s].pos_type.w);
+
+		float d = map(p, shapePos, shapeData, shapeType);
+
+		if (s != 0)
+		{
+			d = opSmoothUnion(last, d, 0.05f);
+			//d = opUnion(last, d);
+		}
+
+		closest = min(d, closest);
+		last = d;
+	}
+
+	return closest;
+}
+
+vec3 calcNormal(vec3 pos) {
+    const float ep = 0.0001;
+    vec2 e = vec2(1.0,-1.0)*0.5773;
+    return normalize( e.xyy*map( pos + e.xyy*ep ) + 
+					  e.yyx*map( pos + e.yyx*ep ) + 
+					  e.yxy*map( pos + e.yxy*ep ) + 
+					  e.xxx*map( pos + e.xxx*ep ) );
+}
+
+layout(local_size_x=32, local_size_y=32, local_size_z=1) in;
+void main() {
+	ivec2 pixel = ivec2(gl_GlobalInvocationID.xy);
+
+	vec2 uv = (vec2(pixel) + vec2(0.5f)) / u_Dimensions;
+	Ray ray = createRayFromCameraUV(uv * 2.0f - 1.0f, u_CameraToWorld, u_CameraInverseProjection);
+
+	const int maxMarches = 32;
+
+	float t = 0.0f;
+	vec4 outputColor = vec4(0.0f);
+	for (int march = 0; march < maxMarches; ++march) {
+		vec3 p = ray.origin + ray.direction * t;
+		float d = map(p);
+
+		if (abs(d) < 0.01f) {
+			vec3 normal = calcNormal(p);
+			outputColor = vec4(normal, 1.0f);
+			break;
+		}
+
+		t += d;
+	}
+	
+	imageStore(u_Output, pixel, outputColor);
+}

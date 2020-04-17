@@ -19,6 +19,7 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="inc\engine\input.h" />
     <ClInclude Include="inc\engine\random.h" />
     <ClInclude Include="inc\engine\renderer.h" />
     <ClInclude Include="inc\engine\timer.h" />
@@ -36,6 +37,7 @@
     <ClInclude Include="inc\physics\simulator.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="src\engine\input.cpp" />
     <ClCompile Include="src\engine\random.cpp" />
     <ClCompile Include="src\engine\renderer.cpp" />
     <ClCompile Include="src\engine\timer.cpp" />

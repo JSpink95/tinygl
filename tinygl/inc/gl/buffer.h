@@ -40,6 +40,7 @@ namespace gl
     // compute buffer
     buffer* CreateComputeBuffer(unsigned int size);
     buffer* CreateComputeBuffer(unsigned int size, const void* data, bool isDynamic);
+    void UpdateComputeBuffer(buffer* buf, unsigned int size, const void* data);
 
     void DestroyBuffer(buffer* buf);
 

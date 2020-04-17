@@ -36,7 +36,7 @@ namespace gl
         }
         else
         {
-            glDrawArrays(mode, 0, count);
+            glDrawArrays(mode, 0, va->vertexCount);
         }
     }
 
@@ -48,7 +48,7 @@ namespace gl
         }
         else
         {
-            glDrawArraysInstanced(mode, 0, count, instances);
+            glDrawArraysInstanced(mode, 0, va->vertexCount, instances);
         }
     }
 

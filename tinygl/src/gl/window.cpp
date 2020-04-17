@@ -74,4 +74,9 @@ namespace glfw
         mx = (float)dmx;
         my = (float)dmy;
     }
+
+    void SetCursorVisible(window* w, bool visible)
+    {
+        glfwSetInputMode(w->context, GLFW_CURSOR, visible ? GLFW_CURSOR_NORMAL : GLFW_CURSOR_DISABLED);
+    }
 }

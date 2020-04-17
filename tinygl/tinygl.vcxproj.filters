@@ -90,6 +90,9 @@
     <ClInclude Include="inc\physics\ray.h">
       <Filter>inc\physics</Filter>
     </ClInclude>
+    <ClInclude Include="inc\engine\input.h">
+      <Filter>inc\engine</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\game\compute_main.cpp">
@@ -139,6 +142,9 @@
     </ClCompile>
     <ClCompile Include="src\physics\ray.cpp">
       <Filter>src\physics</Filter>
+    </ClCompile>
+    <ClCompile Include="src\engine\input.cpp">
+      <Filter>src\engine</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

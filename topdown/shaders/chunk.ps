@@ -1,0 +1,16 @@
+#version 440 core
+
+in vec2 f_Texcoord;
+in float f_TextureId;
+
+uniform sampler2D u_Textures[4];
+
+layout(location = 0) out vec4 o_Color;
+
+void main()
+{
+	int t = int(f_TextureId);
+	vec4 sampled = texture(u_Textures[t], f_Texcoord);
+	o_Color = vec4(sampled.rgb, 1.0);
+	//o_Color = vec4(1.0);
+}

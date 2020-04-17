@@ -127,6 +127,16 @@ namespace gl
 
         return result;
     }
+    
+    void UpdateComputeBuffer(buffer* buf, unsigned int size, const void* data)
+    {
+        if (buf != nullptr)
+        {
+            glBindBuffer(GL_SHADER_STORAGE_BUFFER, buf->id);
+            glBufferData(GL_SHADER_STORAGE_BUFFER, size, data, GL_DYNAMIC_DRAW);
+            glBindBuffer(GL_SHADER_STORAGE_BUFFER, 0);
+        }
+    }
 
     void DestroyBuffer(buffer* buffer)
     {
