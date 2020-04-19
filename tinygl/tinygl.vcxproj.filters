@@ -93,6 +93,9 @@
     <ClInclude Include="inc\engine\input.h">
       <Filter>inc\engine</Filter>
     </ClInclude>
+    <ClInclude Include="inc\gl\mesh.h">
+      <Filter>inc\gl</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\game\compute_main.cpp">
@@ -145,6 +148,9 @@
     </ClCompile>
     <ClCompile Include="src\engine\input.cpp">
       <Filter>src\engine</Filter>
+    </ClCompile>
+    <ClCompile Include="src\gl\mesh.cpp">
+      <Filter>src\gl</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

@@ -3,56 +3,62 @@
 #include "gl/window.h"
 #include "glfw/glfw.h"
 
-input* input::instance = nullptr;
+input_t* input_t::instance = nullptr;
 
 void CreateInput()
 {
-    input::instance = new input;
+    input_t::instance = new input_t;
 
-    std::fill(input::instance->currentKeyStates.begin(), input::instance->currentKeyStates.end(), false);
-    input::instance->previousKeyStates = input::instance->currentKeyStates;
+    std::fill(input_t::instance->currentKeyStates.begin(), input_t::instance->currentKeyStates.end(), false);
+    input_t::instance->previousKeyStates = input_t::instance->currentKeyStates;
 }
 
 void DestroyInput()
 {
-    if (input::instance)
+    if (input_t::instance)
     {
-        delete input::instance;
-        input::instance = nullptr;
+        delete input_t::instance;
+        input_t::instance = nullptr;
     }
 }
 
 bool IsKeyDown(unsigned int key)
 {
-    return input::instance->currentKeyStates.at(key);
+    input_t* input = input_t::instance;
+    return input->currentKeyStates.at(key);
 }
 
 bool QueryKey(unsigned int key, bool& justPressed, bool& justReleased)
 {
-    bool pressed = input::instance->currentKeyStates.at(key);
-    justPressed = pressed && !input::instance->previousKeyStates.at(key);
-    justReleased = !pressed && input::instance->previousKeyStates.at(key);
+    input_t* input = input_t::instance;
+
+    bool pressed = input->currentKeyStates.at(key);
+    justPressed = pressed && !input->previousKeyStates.at(key);
+    justReleased = !pressed && input->previousKeyStates.at(key);
 
     return pressed;
 }
 
 float2 GetCursorDelta()
 {
-    return input::instance->cursor - input::instance->lastCursor;
+    input_t* input = input_t::instance;
+    return input->cursor - input->lastCursor;
 }
 
 void UpdateInput(glfw::window* window)
 {
-    input::instance->previousKeyStates = input::instance->currentKeyStates;
-    for (unsigned int key = 0; key < input::MaxKeys; ++key) {
-        input::instance->currentKeyStates.at(key) = glfwGetKey(window->context, key);
+    input_t* input = input_t::instance;
+
+    input->previousKeyStates = input->currentKeyStates;
+    for (unsigned int key = 0; key < input_t::MaxKeys; ++key) {
+        input->currentKeyStates.at(key) = glfwGetKey(window->context, key);
     }
 
-    input::instance->lastCursor = input::instance->cursor;
-    glfw::GetMousePosition(window, input::instance->cursor.x, input::instance->cursor.y);
+    input->lastCursor = input->cursor;
+    glfw::GetMousePosition(window, input->cursor.x, input->cursor.y);
 
-    if (input::instance->cursorMode == cursor_mode::locked) {
-        input::instance->lastCursor = input::instance->cursor;
+    if (input->cursorMode == cursor_mode::locked) {
+        input->lastCursor = input->cursor;
 
         int w, h;
         glfw::GetWindowSize(window, w, h);
@@ -61,7 +67,7 @@ void UpdateInput(glfw::window* window)
         float hh = (float)h / 2.0f;
         glfwSetCursorPos(window->context, (double)hw, (double)hh);
 
-        input::instance->cursor.x = hw;
-        input::instance->cursor.y = hh;
+        input->cursor.x = hw;
+        input->cursor.y = hh;
     }
 }

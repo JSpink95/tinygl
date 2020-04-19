@@ -2,14 +2,32 @@
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup>
     <ClCompile Include="main.cpp" />
-    <ClCompile Include="src\game\terrain.cpp">
-      <Filter>src\game</Filter>
-    </ClCompile>
     <ClCompile Include="src\game\perlin.cpp">
       <Filter>src\game</Filter>
     </ClCompile>
     <ClCompile Include="src\game\camera.cpp">
       <Filter>src\game</Filter>
+    </ClCompile>
+    <ClCompile Include="src\game\player.cpp">
+      <Filter>src\game</Filter>
+    </ClCompile>
+    <ClCompile Include="src\utility\gradient.cpp">
+      <Filter>src\utility</Filter>
+    </ClCompile>
+    <ClCompile Include="src\game\chunk.cpp">
+      <Filter>src\game</Filter>
+    </ClCompile>
+    <ClCompile Include="src\game\chunk_manager.cpp">
+      <Filter>src\game</Filter>
+    </ClCompile>
+    <ClCompile Include="src\game\chunk_types.cpp">
+      <Filter>src\game</Filter>
+    </ClCompile>
+    <ClCompile Include="src\game\grass.cpp">
+      <Filter>src\game</Filter>
+    </ClCompile>
+    <ClCompile Include="src\ai\mob.cpp">
+      <Filter>src\ai</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -25,16 +43,81 @@
     <Filter Include="src\game">
       <UniqueIdentifier>{7bba6eaf-888c-486b-919c-7ee3b46b6bbb}</UniqueIdentifier>
     </Filter>
+    <Filter Include="inc\utility">
+      <UniqueIdentifier>{130d9984-4783-407e-9dde-e867141a1ad9}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\utility">
+      <UniqueIdentifier>{7a7f0a9e-a954-4a40-bd20-740f5640247b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="shaders">
+      <UniqueIdentifier>{eed1695a-61ac-43ab-bf0b-f050757dd703}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="inc\ai">
+      <UniqueIdentifier>{f787074c-3da7-46df-a851-aabb72ffd51a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\ai">
+      <UniqueIdentifier>{f7b476a1-b96a-4678-b6e9-eb9dce65a600}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="inc\game\terrain.h">
-      <Filter>inc\game</Filter>
-    </ClInclude>
     <ClInclude Include="inc\game\perlin.h">
       <Filter>inc\game</Filter>
     </ClInclude>
     <ClInclude Include="inc\game\camera.h">
       <Filter>inc\game</Filter>
     </ClInclude>
+    <ClInclude Include="inc\game\player.h">
+      <Filter>inc\game</Filter>
+    </ClInclude>
+    <ClInclude Include="inc\utility\gradient.h">
+      <Filter>inc\utility</Filter>
+    </ClInclude>
+    <ClInclude Include="inc\game\chunk.h">
+      <Filter>inc\game</Filter>
+    </ClInclude>
+    <ClInclude Include="inc\game\chunk_manager.h">
+      <Filter>inc\game</Filter>
+    </ClInclude>
+    <ClInclude Include="inc\game\chunk_types.h">
+      <Filter>inc\game</Filter>
+    </ClInclude>
+    <ClInclude Include="inc\game\grass.h">
+      <Filter>inc\game</Filter>
+    </ClInclude>
+    <ClInclude Include="inc\ai\mob.h">
+      <Filter>inc\ai</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="shaders\chunk.gs">
+      <Filter>shaders</Filter>
+    </None>
+    <None Include="shaders\chunk.ps">
+      <Filter>shaders</Filter>
+    </None>
+    <None Include="shaders\chunk.vs">
+      <Filter>shaders</Filter>
+    </None>
+    <None Include="shaders\color.ps">
+      <Filter>shaders</Filter>
+    </None>
+    <None Include="shaders\color.vs">
+      <Filter>shaders</Filter>
+    </None>
+    <None Include="shaders\texture.ps">
+      <Filter>shaders</Filter>
+    </None>
+    <None Include="shaders\texture.vs">
+      <Filter>shaders</Filter>
+    </None>
+    <None Include="shaders\grass.ps">
+      <Filter>shaders</Filter>
+    </None>
+    <None Include="shaders\grass.vs">
+      <Filter>shaders</Filter>
+    </None>
+    <None Include="shaders\grass.gs">
+      <Filter>shaders</Filter>
+    </None>
   </ItemGroup>
 </Project>

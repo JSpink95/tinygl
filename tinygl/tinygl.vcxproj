@@ -27,6 +27,7 @@
     <ClInclude Include="inc\gl\buffer.h" />
     <ClInclude Include="inc\gl\core.h" />
     <ClInclude Include="inc\gl\framebuffer.h" />
+    <ClInclude Include="inc\gl\mesh.h" />
     <ClInclude Include="inc\gl\shader.h" />
     <ClInclude Include="inc\gl\texture.h" />
     <ClInclude Include="inc\gl\vertex_array.h" />
@@ -46,6 +47,7 @@
     <ClCompile Include="src\gl\buffer.cpp" />
     <ClCompile Include="src\gl\core.cpp" />
     <ClCompile Include="src\gl\framebuffer.cpp" />
+    <ClCompile Include="src\gl\mesh.cpp" />
     <ClCompile Include="src\gl\shader.cpp" />
     <ClCompile Include="src\gl\texture.cpp" />
     <ClCompile Include="src\gl\vertex_array.cpp" />

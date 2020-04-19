@@ -32,11 +32,11 @@ void DestroyPerlin(perlin* p)
 
 float pnNoise(const perlin_config& config, const float2& p)
 {
-    float persistence = 0.6f;
+    float persistence = 0.5f;
     float lacunarity = 2.1f;
 
     float amplitude = config.amplitude;
-    float frequency = 0.5f;
+    float frequency = 0.7f;
 
     float result = 0.0f;
     for (int octave = 0; octave < 5; ++octave) {

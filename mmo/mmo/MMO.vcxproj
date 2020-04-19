@@ -127,14 +127,38 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp" />
+    <ClCompile Include="src\ai\mob.cpp" />
     <ClCompile Include="src\game\camera.cpp" />
+    <ClCompile Include="src\game\chunk.cpp" />
+    <ClCompile Include="src\game\chunk_manager.cpp" />
+    <ClCompile Include="src\game\chunk_types.cpp" />
+    <ClCompile Include="src\game\grass.cpp" />
     <ClCompile Include="src\game\perlin.cpp" />
-    <ClCompile Include="src\game\terrain.cpp" />
+    <ClCompile Include="src\game\player.cpp" />
+    <ClCompile Include="src\utility\gradient.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="inc\ai\mob.h" />
     <ClInclude Include="inc\game\camera.h" />
+    <ClInclude Include="inc\game\chunk.h" />
+    <ClInclude Include="inc\game\chunk_manager.h" />
+    <ClInclude Include="inc\game\chunk_types.h" />
+    <ClInclude Include="inc\game\grass.h" />
     <ClInclude Include="inc\game\perlin.h" />
-    <ClInclude Include="inc\game\terrain.h" />
+    <ClInclude Include="inc\game\player.h" />
+    <ClInclude Include="inc\utility\gradient.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="shaders\chunk.gs" />
+    <None Include="shaders\chunk.ps" />
+    <None Include="shaders\chunk.vs" />
+    <None Include="shaders\color.ps" />
+    <None Include="shaders\color.vs" />
+    <None Include="shaders\grass.gs" />
+    <None Include="shaders\grass.ps" />
+    <None Include="shaders\grass.vs" />
+    <None Include="shaders\texture.ps" />
+    <None Include="shaders\texture.vs" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

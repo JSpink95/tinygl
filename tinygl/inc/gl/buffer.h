@@ -23,13 +23,16 @@ namespace gl
     using cbo = compute_buffer;
 
     // vertex buffer
-
     buffer* CreateVertexBuffer(unsigned int size);
     buffer* CreateVertexBuffer(unsigned int size, const void* data);
 
     // index buffer
     buffer* CreateIndexBuffer(unsigned int size);
     buffer* CreateIndexBuffer(unsigned int size, const void* data);
+
+    // instance buffer
+    buffer* CreateInstanceBuffer(unsigned int size);
+    buffer* CreateInstanceBuffer(unsigned int size, const void* data);
 
     // uniform buffer
     buffer* CreateUniformBuffer(unsigned int size);

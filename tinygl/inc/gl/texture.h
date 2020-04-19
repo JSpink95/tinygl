@@ -30,6 +30,7 @@ namespace gl
     };
 
     texture* CreateTexture2D(unsigned int w, unsigned int h, unsigned int type, unsigned int internalFormat, unsigned int format, const void* data);
+    texture* CreateTexture2D(const char* file);
     void DestroyTexture(texture* t);
 
     void BindTexture(texture* t, unsigned int unit);

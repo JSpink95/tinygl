@@ -61,6 +61,34 @@ namespace gl
     }
 
     // 
+    // instance buffer
+    // 
+
+    buffer* CreateInstanceBuffer(unsigned int size)
+    {
+        buffer* result = new buffer;
+
+        glGenBuffers(1, &result->id);
+        glBindBuffer(GL_ARRAY_BUFFER, result->id);
+        glBufferData(GL_ARRAY_BUFFER, size, nullptr, GL_DYNAMIC_DRAW);
+        glBindBuffer(GL_ARRAY_BUFFER, 0);
+
+        return result;
+    }
+    
+    buffer* CreateInstanceBuffer(unsigned int size, const void* data)
+    {
+        buffer* result = new buffer;
+
+        glGenBuffers(1, &result->id);
+        glBindBuffer(GL_ARRAY_BUFFER, result->id);
+        glBufferData(GL_ARRAY_BUFFER, size, data, GL_STATIC_DRAW);
+        glBindBuffer(GL_ARRAY_BUFFER, 0);
+
+        return result;
+    }
+
+    // 
     // uniform buffer
     // 
 

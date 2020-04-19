@@ -3,6 +3,9 @@
 
 #include "glfw/glfw.h"
 
+#define STB_IMAGE_IMPLEMENTATION
+#include "stb/stb_image.h"
+
 namespace gl
 {
     const unsigned int texture::parameter::min_filter = GL_TEXTURE_MIN_FILTER;
@@ -30,6 +33,16 @@ namespace gl
         glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_REPEAT);
 
         glBindTexture(GL_TEXTURE_2D, 0);
+
+        return result;
+    }
+
+    texture* CreateTexture2D(const char* file)
+    {
+        int w, h, c;
+        stbi_uc* pixels = stbi_load(file, &w, &h, &c, 0);
+        texture* result = CreateTexture2D(w, h, GL_UNSIGNED_BYTE, c == 4 ? GL_RGBA : GL_RGB, c == 4 ? GL_RGBA : GL_RGB, pixels);
+        stbi_image_free(pixels);
 
         return result;
     }

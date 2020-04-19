@@ -13,9 +13,9 @@ struct cursor_mode
     enum enum_ { free, locked, max };
 };
 
-struct input
+struct input_t
 {
-    static input* instance;
+    static input_t* instance;
     static constexpr const unsigned int MaxKeys = 512;
 
     std::array<bool, MaxKeys> previousKeyStates;

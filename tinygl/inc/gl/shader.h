@@ -45,10 +45,10 @@ namespace gl
     void UploadUniformArray(program* p, const char* id, unsigned int count, const float2* xy);
 
     void UploadUniform(program* p, const char* id, const float3& xyz);
-    void UploadUniformArray(program* p, const char* id, unsigned int count, const float3& xyz);
+    void UploadUniformArray(program* p, const char* id, unsigned int count, const float3* xyz);
 
     void UploadUniform(program* p, const char* id, const float4& xyzw);
-    void UploadUniformArray(program* p, const char* id, unsigned int count, const float4& xyzw);
+    void UploadUniformArray(program* p, const char* id, unsigned int count, const float4* xyzw);
 
     // ints
     void UploadUniform(program* p, const char* id, int value);

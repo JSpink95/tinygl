@@ -1,0 +1,19 @@
+#version 440 core
+
+in vec3 fs_normal;
+in vec4 fs_position;
+in vec4 fs_albedo;
+
+layout(location = 0) out vec4 o_color;
+
+void main()
+{
+    float nu = dot(vec3(0.0f, 1.0f, 0.0f), fs_normal);
+
+    vec3 l = normalize(vec3(10.0f, 34.0f, 16.0f) - fs_position.xyz);
+    vec3 ambient = fs_albedo.rgb * 0.2f;
+    vec3 albedo = fs_albedo.rgb;
+    float nl = max(dot(fs_normal, l), 0.0f);
+
+    o_color = vec4(ambient + albedo * nl, 1.0f);
+}

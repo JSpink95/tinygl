@@ -44,7 +44,7 @@ namespace gl
     {
         if (va->indices)
         {
-            glDrawElementsInstancedBaseVertex(mode, count, GL_UNSIGNED_INT, (void*)0, instances, 0);
+            glDrawElementsInstancedBaseVertex(mode, va->indexCount, GL_UNSIGNED_INT, (void*)0, instances, 0);
         }
         else
         {

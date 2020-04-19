@@ -1,0 +1,15 @@
+#version 440 core
+
+in vec2 f_texcoord;
+
+uniform sampler2D u_texture;
+
+layout (location = 0) out vec4 o_color;
+
+void main() {
+	vec4 color = texture(u_texture, vec2(f_texcoord.x, 1.0f - f_texcoord.y));
+	if (color.a < 1.0f) discard; // cheap and nasty alpha
+
+	o_color = color;
+	//o_color = vec4(f_texcoord, 0.0f, 1.0f);
+}
